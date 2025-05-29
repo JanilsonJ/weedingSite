@@ -4,47 +4,89 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Bruna &amp; Janilson</title>
+    <link rel="stylesheet" href="css/styles.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gwendolyn:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header class="hero">
-    <div class="monogram">
-        <img src="images/monograma.png" alt="Monograma" class="card__img" />
-    </div> <!-- espaço para monograma -->
-    <h1 class="hero__title">Bruna &amp; Janilson</h1>
-    <p class="hero__subtitle">Estamos felizes com sua presença e carinho!</p>
-</header>
+    <div class="header-fixed">Bruna &amp; Janilson</div>
+    <header class="hero">
+        <div class="monogram">
+            <img src="images/monograma.png" alt="Monograma" class="card__img" />
+        </div>
+        <h1 class="hero__title" style="display:none">Bruna &amp; Janilson</h1>
+        <p class="hero__subtitle">Agradecemos por fazer parte deste momento tão especial em nossas vidas.</p>
+        <!-- Countdown -->
+        <div class="countdown" id="countdown">
+            <div class="countdown__box">
+                <div class="countdown__number" id="days">0</div>
+                <div class="countdown__label">Dias</div>
+            </div>
+            <div class="countdown__box">
+                <div class="countdown__number" id="hours">0</div>
+                <div class="countdown__label">Horas</div>
+            </div>
+            <div class="countdown__box">
+                <div class="countdown__number" id="minutes">0</div>
+                <div class="countdown__label">Minutos</div>
+            </div>
+            <div class="countdown__box">
+                <div class="countdown__number" id="seconds">0</div>
+                <div class="countdown__label">Segundos</div>
+            </div>
+        </div>
+    </header>
 
-<main>
-    <section class="links">
-        <article class="card">
-            <img src="images/camicado-logo.png" alt="Camicado" class="card__img" />
-            <h2 class="card__title">Lista Camicado</h2>
-            <a href="https://www.camicado.com.br/lista/convidado/brunaejanilson" target="_blank" class="card__btn">Ver lista &rarr;</a>
-        </article>
+    <main>
+        <section class="links">
+            <article class="card">
+                <img src="images/camicado-logo.png" alt="Camicado" class="card__img" />
+                <h2 class="card__title">Lista Camicado</h2>
+                <a href="https://www.camicado.com.br/lista/convidado/brunaejanilson" target="_blank" class="card__btn">Ver lista &rarr;</a>
+            </article>
+            <article class="card">
+                <img src="images/casagoianita-logo.png" alt="Casa Goianita" class="card__img" />
+                <h2 class="card__title">Lista Casa Goianita</h2>
+                <a href="https://www.casagoianita.com.br/wishlist/#/list/brunaneiro-f02f3d/30f235fa47110fc1" target="_blank" class="card__btn">Ver lista &rarr;</a>
+            </article>
+        </section>
 
-        <article class="card">
-            <img src="images/casagoianita-logo.png" alt="Casa Goianita" class="card__img" />
-            <h2 class="card__title">Lista Casa Goianita</h2>
-            <a href="https://www.casagoianita.com.br/wishlist/#/list/brunaneiro-f02f3d/30f235fa47110fc1" target="_blank" class="card__btn">Ver lista &rarr;</a>
-        </article>
-    </section>
+        <section class="pix">
+            <h3 class="pix__title">Chave PIX</h3>
+            <p class="pix__key">email@exemplo.com</p>
+            <img src="images/pix-qr-placeholder.png" alt="QR Code PIX" class="pix__qr" />
+        </section>
+    </main>
 
-    <section class="pix">
-        <h3 class="pix__title">Chave PIX</h3>
-        <p class="pix__key">email@exemplo.com</p> <!-- espaço para chave PIX -->
-        <img src="images/pix-qr-placeholder.png" alt="QR Code PIX" class="pix__qr" />
-    </section>
-</main>
+    <footer class="footer">
+        <p>Use o QR Code acima ou os botões para acessar nossas listas.</p>
+    </footer>
 
-<footer class="footer">
-    <p>Use o QR Code acima ou os botões para acessar nossas listas.</p>
-</footer>
+    <script>
+        // Countdown script
+        const targetDate = new Date("2025-09-27T00:00:00");
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+            if (diff <= 0) return;
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+            daysEl.textContent = d;
+            hoursEl.textContent = h.toString().padStart(2, '0');
+            minutesEl.textContent = m.toString().padStart(2, '0');
+            secondsEl.textContent = s.toString().padStart(2, '0');
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
 </body>
 </html>
-
