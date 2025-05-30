@@ -1,92 +1,270 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bruna &amp; Janilson</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Merriweather:wght@300;400;700&family=Allura&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #f0ece5;
+            --color-card: #fcfaf5;
+            --color-text: #4b2e1e;
+            --color-gold: #b08d57;
+            --font-title: 'Allura', cursive;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Merriweather', serif;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height:1.5;
+        }
+        .page { display:flex; justify-content:center; padding:50px 20px; }
+        .frame-outer,
+        .frame-middle,
+        .frame-inner { background: var(--color-bg); display:inline-block; }
+        .frame-outer { border:2px solid #d3c7aa; padding:30px; }
+        .frame-middle { border:2px solid #e6dfd4; padding:25px; }
+        .frame-inner { border:1px solid #e0d8cd; padding:20px; }
+
+        .invitation-card {
+            background: var(--color-card);
+            padding:50px;
+            max-width:800px;
+            text-align:center;
+        }
+        .monogram img {
+            width:100px; height:100px; object-fit:contain;
+            margin:0 auto 20px; display:block;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.05);} }
+        h1 {
+            font-family: var(--font-title);
+            font-size:3rem;
+            margin:10px 0;
+            color: var(--color-gold);
+        }
+        p.welcome {
+            font-family: var(--font-heading);
+            font-size:1rem;
+            margin-bottom:30px;
+        }
+        .separator { border:none; border-top:1px solid #e0d8cd; margin:40px 0; }
+
+        /* Countdown */
+        #countdown { display:flex; justify-content:center; gap:20px; perspective:800px; }
+        .count-card {
+            background: var(--color-card);
+            border:1px solid #ddd;
+            border-radius:6px;
+            padding:15px;
+            width:100px;
+            box-shadow:0 2px 4px rgba(0,0,0,0.1);
+            transition:transform 0.3s;
+        }
+        .count-card.flip { animation: flipUp 0.7s ease forwards; }
+        @keyframes flipUp { from{transform:rotateX(90deg);opacity:0;} to{transform:rotateX(0);opacity:1;} }
+        .number { font-family: var(--font-heading); font-size:1.8rem; }
+        .label {
+            font-size:0.7rem;
+            margin-top:5px;
+            text-transform:uppercase;
+            letter-spacing:0.5px;
+            white-space: nowrap;
+        }
+
+        /* Gifts Professional */
+        .gift-section { margin:40px 0; }
+        .gift-section h2 {
+            font-family: var(--font-heading);
+            font-size:1.5rem;
+            color: var(--color-gold);
+            margin-bottom:20px;
+        }
+        .gift-cards {
+            display:grid;
+            grid-template-columns:1fr;
+            gap:20px;
+        }
+        @media (min-width:600px) { .gift-cards { grid-template-columns:1fr 1fr; } }
+        .gift-card {
+            background: var(--color-card);
+            border:1px solid var(--color-gold);
+            border-radius:8px;
+            padding:20px;
+            text-align:center;
+            transition:transform 0.3s, box-shadow 0.3s;
+        }
+        .gift-card:hover {
+            transform: translateY(-5px);
+            box-shadow:0 8px 12px rgba(0,0,0,0.15);
+        }
+        .gift-card img {
+            width:140px;
+            height:140px;
+            object-fit:contain;
+            border-radius:4px;
+            border-bottom:2px solid var(--color-gold);
+            margin-bottom:10px;
+        }
+        .gift-card h3 {
+            font-family:var(--font-heading);
+            font-size:1.1rem;
+            margin:10px 0;
+            color:var(--color-text);
+        }
+        .gift-card a {
+            display:inline-block;
+            margin-top:10px;
+            font-family:var(--font-body);
+            font-size:0.9rem;
+            color:var(--color-gold);
+            text-decoration:none;
+            padding:5px 10px;
+            border:1px solid transparent;
+            transition:background 0.3s, color 0.3s;
+        }
+        .gift-card a:hover {
+            background:var(--color-gold);
+            color:var(--color-card);
+            border-color:var(--color-gold);
+        }
+
+        /* Pix */
+        .pix-section h2 {
+            font-family: var(--font-heading);
+            font-size:1.5rem;
+            color: var(--color-gold);
+            margin:40px 0 20px;
+        }
+        .pix-section p {
+            font-size:0.9rem;
+            margin:5px 0;
+            word-break:break-all;
+        }
+        .pix-key {
+            display:inline-block;
+            background:var(--color-bg);
+            padding:4px 8px;
+            font-family:var(--font-body);
+            font-size:0.9rem;
+            border:1px dashed var(--color-gold);
+            border-radius:4px;
+            margin-left:5px;
+        }
+        .copy-link {
+            display:inline-block;
+            margin-top:10px;
+            font-size:0.9rem;
+            color:var(--color-gold);
+            text-decoration:underline;
+            cursor:pointer;
+        }
+
+        /* Location */
+        .location-section h2 {
+            font-family: var(--font-heading);
+            font-size:1.5rem;
+            color: var(--color-gold);
+            margin:40px 0 20px;
+        }
+        .address { margin-bottom:20px; font-size:0.9rem; }
+        .map-container { width:100%; height:200px; border-radius:4px; overflow:hidden; margin-top:10px; }
+        .map-container iframe { width:100%; height:100%; border:0; }
+    </style>
 </head>
 <body>
-    <div class="header-fixed">Bruna &amp; Janilson</div>
-    <header class="hero">
-        <div class="monogram">
-            <img src="images/monograma.png" alt="Monograma" class="card__img" />
+<div class="page">
+    <div class="frame-outer">
+        <div class="frame-middle">
+            <div class="frame-inner invitation-card">
+
+                <div class="monogram">
+                    <img src="images/monograma.png" alt="Monograma">
+                </div>
+                <h1>Bruna &amp; Janilson</h1>
+                <p class="welcome">Agradecemos por fazer parte deste momento tão especial em nossas vidas.</p>
+
+                <hr class="separator">
+
+                <section id="countdown">
+                    <div class="count-card" id="days"><div class="number">0</div><div class="label">Dias</div></div>
+                    <div class="count-card" id="hours"><div class="number">0</div><div class="label">Horas</div></div>
+                    <div class="count-card" id="minutes"><div class="number">0</div><div class="label">Minutos</div></div>
+                    <div class="count-card" id="seconds"><div class="number">0</div><div class="label">Segundos</div></div>
+                </section>
+
+                <hr class="separator">
+
+                <section class="gift-section">
+                    <h2>Presentes</h2>
+                    <div class="gift-cards">
+                        <div class="gift-card">
+                            <img src="images/camicado.png" alt="Camicado">
+                            <h3>Camicado</h3>
+                            <a href="https://www.camicado.com.br/lista/convidado/brunaejanilson" target="_blank">Ver lista →</a>
+                        </div>
+                        <div class="gift-card">
+                            <img src="images/casagoianita.png" alt="Casa Goianita">
+                            <h3>Casa Goianita</h3>
+                            <a href="https://www.casagoianita.com.br/wishlist/#/list/brunaneiro-f02f3d/30f235fa47110fc1" target="_blank">Ver lista →</a>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="separator">
+
+                <section class="pix-section">
+                    <h2>Contribuição via Pix</h2>
+                    <p>Chave Pix:<span class="pix-key">cf8baef6-5316-4300-847f-dd8afb5190e9</span></p>
+                    <span class="copy-link" onclick="navigator.clipboard.writeText('cf8baef6-5316-4300-847f-dd8afb5190e9')">Copiar chave</span>
+                    <div class="pix-container">
+                        <img src="images/pix-qr.png" alt="QR Code Pix">
+                    </div>
+                </section>
+
+                <hr class="separator">
+
+                <section class="location-section">
+                    <h2>Localização</h2>
+                    <div class="address">
+                        Cerimônia: Reitoria Nossa Sra. das Graças – Rua 4, 1370, Setor Central, Goiânia – GO
+                        <div class="map-container">
+                            <iframe src="https://maps.google.com/maps?q=Reitoria%20Nossa%20Sra.%20das%20Graças%20Rua%204%2C%201370%2C%20Setor%20Central%2C%20Goi%C3%A2nia%20GO&output=embed" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="address">
+                        Recepção: Maktub – Rua 83, 205, Setor Sul, Goiânia – GO
+                        <div class="map-container">
+                            <iframe src="https://maps.google.com/maps?q=Maktub%20Rua%2083%2C%20205%2C%20Setor%20Sul%2C%20Goi%C3%A2nia%20GO&output=embed" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
         </div>
-        <h1 class="hero__title" style="display:none">Bruna &amp; Janilson</h1>
-        <p class="hero__subtitle">Agradecemos por fazer parte deste momento tão especial em nossas vidas.</p>
-        <!-- Countdown -->
-        <div class="countdown" id="countdown">
-            <div class="countdown__box">
-                <div class="countdown__number" id="days">0</div>
-                <div class="countdown__label">Dias</div>
-            </div>
-            <div class="countdown__box">
-                <div class="countdown__number" id="hours">0</div>
-                <div class="countdown__label">Horas</div>
-            </div>
-            <div class="countdown__box">
-                <div class="countdown__number" id="minutes">0</div>
-                <div class="countdown__label">Minutos</div>
-            </div>
-            <div class="countdown__box">
-                <div class="countdown__number" id="seconds">0</div>
-                <div class="countdown__label">Segundos</div>
-            </div>
-        </div>
-    </header>
+    </div>
+</div>
 
-    <main>
-        <section class="links">
-            <article class="card">
-                <img src="images/camicado-logo.png" alt="Camicado" class="card__img" />
-                <h2 class="card__title">Lista Camicado</h2>
-                <a href="https://www.camicado.com.br/lista/convidado/brunaejanilson" target="_blank" class="card__btn">Ver lista &rarr;</a>
-            </article>
-            <article class="card">
-                <img src="images/casagoianita-logo.png" alt="Casa Goianita" class="card__img" />
-                <h2 class="card__title">Lista Casa Goianita</h2>
-                <a href="https://www.casagoianita.com.br/wishlist/#/list/brunaneiro-f02f3d/30f235fa47110fc1" target="_blank" class="card__btn">Ver lista &rarr;</a>
-            </article>
-        </section>
-
-        <section class="pix">
-            <h3 class="pix__title">Chave PIX</h3>
-            <p class="pix__key">email@exemplo.com</p>
-            <img src="images/pix-qr-placeholder.png" alt="QR Code PIX" class="pix__qr" />
-        </section>
-    </main>
-
-    <footer class="footer">
-        <p>Use o QR Code acima ou os botões para acessar nossas listas.</p>
-    </footer>
-
-    <script>
-        // Countdown script
-        const targetDate = new Date("2025-09-27T00:00:00");
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
-
-        function updateCountdown() {
-            const now = new Date();
-            const diff = targetDate - now;
-            if (diff <= 0) return;
-            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const m = Math.floor((diff / (1000 * 60)) % 60);
-            const s = Math.floor((diff / 1000) % 60);
-            daysEl.textContent = d;
-            hoursEl.textContent = h.toString().padStart(2, '0');
-            minutesEl.textContent = m.toString().padStart(2, '0');
-            secondsEl.textContent = s.toString().padStart(2, '0');
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    </script>
+<script>
+    const target = new Date('2025-09-27T10:30:00');
+    const ids = ['days','hours','minutes','seconds'];
+    function tick(){
+        const now = new Date(), diff = target - now;
+        const d = Math.floor(diff/86400000), h = Math.floor(diff/3600000)%24;
+        const m = Math.floor(diff/60000)%60, s = Math.floor(diff/1000)%60;
+        [d,h,m,s].forEach((v,i)=>{
+            const el = document.getElementById(ids[i]);
+            const num = el.querySelector('.number');
+            if(num.textContent!=v){ num.textContent=v; el.classList.add('flip'); setTimeout(()=>el.classList.remove('flip'),700); }
+        });
+    }
+    tick(); setInterval(tick,1000);
+</script>
 </body>
 </html>
