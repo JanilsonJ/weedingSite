@@ -154,3 +154,251 @@ body {
     background: var(--gold);
     color: #fff;
 }
+        :root {
+            --color-bg: #f0ece5;
+            --color-card: #fcfaf5;
+            --color-text: #4b2e1e;
+            --color-gold: #b08d57;
+            --border-color: #e0d4c4;
+            --font-title: 'Great Vibes', cursive;       /* Agora usa Great Vibes */
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Merriweather', serif;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height:1.5;
+        }
+        .page {
+            width:100%;
+            padding:20px;
+            display:flex;
+            justify-content:center;
+        }
+        .frame-outer,
+        .frame-middle,
+        .frame-inner {
+            width:100%;
+            display:block;
+            background: var(--color-bg);
+        }
+        .frame-outer { border:2px solid #d3c7aa; padding:15px; }
+        .frame-middle { border:2px solid #e6dfd4; padding:12px; }
+        .frame-inner { border:1px solid #e0d8cd; padding:10px; }
+        .invitation-card {
+            background: var(--color-card);
+            padding:25px;
+            max-width:600px;
+            margin:auto;
+            text-align:center;
+        }
+        .monogram img {
+            width:80px;
+            height:80px;
+            object-fit:contain;
+            margin:0 auto 15px;
+            display:block;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {0%,100%{transform:scale(1.2);}50%{transform:scale(0.8);} }
+        h1 {
+            font-family: var(--font-title);    /* aplica Great Vibes */
+            font-size:2.5rem;
+            margin:10px 0;
+            color: var(--color-gold);
+        }
+        p.welcome {
+            font-family: var(--font-heading);
+            font-size:0.9rem;
+            margin-bottom:20px;
+        }
+        .separator {
+            border:none;
+            border-top:1px solid #e0d8cd;
+            margin:30px 0;
+        }
+
+        /* Texto acima do contador */
+        .countdown-text {
+            font-family: var(--font-heading);
+            font-size:1rem;
+            color: var(--color-text);
+            margin-bottom:12px;
+        }
+
+        /* Countdown */
+        .countdown-container {
+            display: flex;
+            flex-wrap: wrap;       /* quebra em telas estreitas */
+            gap: 10px;
+            justify-content: center;
+        }
+        .countdown-card {
+            flex: 1 1 100px;       /* encolhe até 100px */
+            max-width: 120px;
+            background: var(--color-card);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .countdown-card::before, .countdown-card::after {
+            content:'';
+            position:absolute;
+            top:50%;
+            width:6px;
+            height:6px;
+            background:var(--color-gold);
+            border-radius:50%;
+        }
+        .countdown-card::before { left:-10px; }
+        .countdown-card::after { right:-10px; }
+        .number {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--color-gold);
+            overflow: hidden;
+        }
+        .label {
+            font-size: 0.7rem;
+            margin-top: 6px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Ajustes responsivos para o contador */
+        @media (max-width: 480px) {
+            .countdown-card {
+                flex: 1 1 80px;
+                padding: 10px;
+            }
+            .number {
+                font-size: 1.4rem;
+            }
+            .label {
+                font-size: 0.6rem;
+                letter-spacing: 0.5px;
+            }
+        }
+
+        /* Demais seções seguem igual */
+        .gift-section { margin:30px 0; }
+        .gift-section h2 {
+            font-family: var(--font-heading);
+            font-size:1.2rem;
+            color: var(--color-gold);
+            margin-bottom:15px;
+        }
+        .gift-cards {
+            display:grid;
+            grid-template-columns:1fr;
+            gap:15px;
+        }
+        @media (min-width:480px) { .gift-cards { grid-template-columns:1fr 1fr; } }
+        .gift-card {
+            background: var(--color-card);
+            border:1px solid var(--color-gold);
+            border-radius:8px;
+            padding:15px;
+            text-align:center;
+            transition:transform 0.3s, box-shadow 0.3s;
+        }
+        .gift-card:hover {
+            transform: translateY(-3px);
+            box-shadow:0 6px 8px rgba(0,0,0,0.15);
+        }
+        .gift-card img {
+            width:120px;
+            height:120px;
+            object-fit:contain;
+            border-radius:4px;
+            border-bottom:2px solid var(--color-gold);
+            margin-bottom:8px;
+        }
+        .gift-card h3 {
+            font-family:var(--font-heading);
+            font-size:1rem;
+            margin:8px 0;
+            color:var(--color-text);
+        }
+        .gift-card a {
+            display:inline-block;
+            margin-top:8px;
+            font-family:var(--font-body);
+            font-size:0.8rem;
+            color:var(--color-gold);
+            text-decoration:none;
+            padding:4px 8px;
+            border:1px solid transparent;
+            transition:background 0.3s, color 0.3s;
+        }
+        .gift-card a:hover {
+            background:var(--color-gold);
+            color:var(--color-card);
+            border-color:var(--color-gold);
+        }
+
+        .pix-section h2 {
+            font-family: var(--font-heading);
+            font-size:1.2rem;
+            color: var(--color-gold);
+            margin:30px 0 15px;
+        }
+        .pix-section p {
+            font-size:0.8rem;
+            margin:3px 0;
+            word-break:break-all;
+        }
+        .pix-key {
+            display:inline-block;
+            background:var(--color-bg);
+            padding:3px 6px;
+            font-family:var(--font-body);
+            font-size:0.8rem;
+            border:1px dashed var(--color-gold);
+            border-radius:4px;
+            margin-left:5px;
+        }
+        .copy-link {
+            display:inline-block;
+            margin-top:8px;
+            font-size:0.8rem;
+            color:var(--color-gold);
+            text-decoration:underline;
+            cursor:pointer;
+        }
+        .pix-container img {
+            width:120px;
+            height:120px;
+            object-fit:contain;
+            border-radius:4px;
+            border:1px solid #ddd;
+            margin-top:8px;
+        }
+
+        .location-section h2 {
+            font-family: var(--font-heading);
+            font-size:1.2rem;
+            color: var(--color-gold);
+            margin:30px 0 15px;
+        }
+        .address {
+            margin-bottom:15px;
+            font-size:0.8rem;
+        }
+        .map-container {
+            width:100%;
+            height:150px;
+            border-radius:4px;
+            overflow:hidden;
+            margin-top:8px;
+        }
+        .map-container iframe {
+            width:100%;
+            height:100%;
+            border:0;
+        }
