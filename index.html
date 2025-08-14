@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0; url=https://sites.icasei.com.br/brunaejanilson/home" />
     <title>Bruna &amp; Janilson</title>
     <!-- Fonts: adicionamos Great Vibes para um traço mais delicado -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
@@ -313,6 +314,11 @@
                             <h3>Magazine Luiza</h3>
                             <a href="https://www.finalfeliz.de/brunaejanilson" target="_blank">Ver lista →</a>
                         </div>
+                        <div class="gift-card">
+                            <img src="images/icasei.png" alt="ICasei">
+                            <h3>Magazine Luiza</h3>
+                            <a href="https://sites.icasei.com.br/brunaejanilson/home" target="_blank">Ver lista →</a>
+                        </div>
                     </div>
                 </section>
 
@@ -350,7 +356,16 @@
     </div>
 </div>
 
+<noscript>Se não redirecionar, clique <a href="https://sites.icasei.com.br/brunaejanilson/home">aqui</a>.</noscript>]
+
 <script>
+    // Redireciona rápido e, se quiser, preserva ?query e #hash
+    const destino = new URL("https://sites.icasei.com.br/brunaejanilson/home");
+    const atual = new URL(window.location.href);
+    if (atual.search) destino.search = atual.search;
+    if (atual.hash) destino.hash = atual.hash;
+    window.location.replace(destino.href); // não deixa o usuário "voltar" para a antiga
+
     const target = new Date('2025-09-27T10:30:00');
     const ids = ['days','hours','minutes','seconds'];
     function tick(){
