@@ -1,388 +1,168 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=https://sites.icasei.com.br/brunaejanilson/home" />
-    <title>Bruna &amp; Janilson</title>
-    <!-- Fonts: adicionamos Great Vibes para um traço mais delicado -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bruna &amp; Janilson • Redirecionando…</title>
+
+    <!-- Redirecionamento imediato por meta refresh (fallback do JS) -->
+    <meta id="meta-refresh" http-equiv="refresh" content="3; url=https://sites.icasei.com.br/brunaejanilson/home" />
+
+    <!-- Fonts do site antigo -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+
     <style>
-        :root {
-            --color-bg: #f0ece5;
-            --color-card: #fcfaf5;
-            --color-text: #4b2e1e;
-            --color-gold: #b08d57;
-            --border-color: #e0d4c4;
-            --font-title: 'Great Vibes', cursive;       /* Agora usa Great Vibes */
-            --font-heading: 'Playfair Display', serif;
-            --font-body: 'Merriweather', serif;
+        :root{
+            --color-bg:#f0ece5;
+            --color-card:#fcfaf5;
+            --color-text:#4b2e1e;
+            --color-gold:#b08d57;
+            --border-color:#e0d4c4;
+            --font-title:'Great Vibes',cursive;
+            --font-heading:'Playfair Display',serif;
+            --font-body:'Merriweather',serif;
         }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body {
-            background: var(--color-bg);
-            color: var(--color-text);
-            font-family: var(--font-body);
+        *{margin:0;padding:0;box-sizing:border-box}
+        html,body{height:100%}
+        body{
+            background:var(--color-bg);
+            color:var(--color-text);
+            font-family:var(--font-body);
             line-height:1.5;
-        }
-        .page {
-            width:100%;
+            display:flex; align-items:center; justify-content:center;
             padding:20px;
-            display:flex;
-            justify-content:center;
         }
-        .frame-outer,
-        .frame-middle,
-        .frame-inner {
-            width:100%;
-            display:block;
-            background: var(--color-bg);
-        }
-        .frame-outer { border:2px solid #d3c7aa; padding:15px; }
-        .frame-middle { border:2px solid #e6dfd4; padding:12px; }
-        .frame-inner { border:1px solid #e0d8cd; padding:10px; }
-        .invitation-card {
-            background: var(--color-card);
-            padding:25px;
-            max-width:600px;
+        .page{width:100%}
+        .frame-outer,.frame-middle,.frame-inner{width:100%; display:block; background:var(--color-bg)}
+        .frame-outer{border:2px solid #d3c7aa; padding:15px}
+        .frame-middle{border:2px solid #e6dfd4; padding:12px}
+        .frame-inner{border:1px solid #e0d8cd; padding:10px}
+
+        .invitation-card{
+            background:var(--color-card);
+            max-width:720px;
             margin:auto;
             text-align:center;
-        }
-        .monogram img {
-            width:80px;
-            height:80px;
-            object-fit:contain;
-            margin:0 auto 15px;
-            display:block;
-            animation: pulse 4s ease-in-out infinite;
-        }
-        @keyframes pulse {0%,100%{transform:scale(1.2);}50%{transform:scale(0.8);} }
-        h1 {
-            font-family: var(--font-title);    /* aplica Great Vibes */
-            font-size:2.5rem;
-            margin:10px 0;
-            color: var(--color-gold);
-        }
-        p.welcome {
-            font-family: var(--font-heading);
-            font-size:0.9rem;
-            margin-bottom:20px;
-        }
-        .separator {
-            border:none;
-            border-top:1px solid #e0d8cd;
-            margin:30px 0;
+            padding:28px 24px;
+            border-radius:12px;
+            box-shadow:0 10px 26px rgba(0,0,0,.06);
         }
 
-        /* Texto acima do contador */
-        .countdown-text {
-            font-family: var(--font-heading);
-            font-size:1rem;
-            color: var(--color-text);
-            margin-bottom:12px;
+        .monogram img{
+            width:90px; height:90px; object-fit:contain; display:block; margin:0 auto 14px;
+            animation:pulse 4s ease-in-out infinite;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,.08));
         }
+        @keyframes pulse{0%,100%{transform:scale(1.08)}50%{transform:scale(0.92)}}
 
-        /* Countdown */
-        .countdown-container {
-            display: flex;
-            flex-wrap: wrap;       /* quebra em telas estreitas */
-            gap: 10px;
-            justify-content: center;
+        h1{
+            font-family:var(--font-title);
+            font-size:2.8rem;
+            color:var(--color-gold);
+            line-height:1;
+            margin-bottom:6px;
         }
-        .countdown-card {
-            flex: 1 1 100px;       /* encolhe até 100px */
-            max-width: 120px;
-            background: var(--color-card);
-            border: 2px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            position: relative;
+        .sep{
+            height:1px; border:0; background:linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin:18px 0 16px;
         }
-        .countdown-card::before, .countdown-card::after {
-            content:'';
-            position:absolute;
-            top:50%;
-            width:6px;
-            height:6px;
-            background:var(--color-gold);
-            border-radius:50%;
-        }
-        .countdown-card::before { left:-10px; }
-        .countdown-card::after { right:-10px; }
-        .number {
-            font-family: var(--font-heading);
-            font-size: 1.8rem;
-            color: var(--color-gold);
-            overflow: hidden;
-        }
-        .label {
-            font-size: 0.7rem;
-            margin-top: 6px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* Ajustes responsivos para o contador */
-        @media (max-width: 480px) {
-            .countdown-card {
-                flex: 1 1 80px;
-                padding: 10px;
-            }
-            .number {
-                font-size: 1.4rem;
-            }
-            .label {
-                font-size: 0.6rem;
-                letter-spacing: 0.5px;
-            }
-        }
-
-        /* Demais seções seguem igual */
-        .gift-section { margin:30px 0; }
-        .gift-section h2 {
-            font-family: var(--font-heading);
-            font-size:1.2rem;
-            color: var(--color-gold);
-            margin-bottom:15px;
-        }
-        .gift-cards {
-            display:grid;
-            grid-template-columns:1fr;
-            gap:15px;
-        }
-        @media (min-width:480px) { .gift-cards { grid-template-columns:1fr 1fr; } }
-        .gift-card {
-            background: var(--color-card);
-            border:1px solid var(--color-gold);
-            border-radius:8px;
-            padding:15px;
-            text-align:center;
-            transition:transform 0.3s, box-shadow 0.3s;
-        }
-        .gift-card:hover {
-            transform: translateY(-3px);
-            box-shadow:0 6px 8px rgba(0,0,0,0.15);
-        }
-        .gift-card img {
-            width:120px;
-            height:120px;
-            object-fit:contain;
-            border-radius:4px;
-            border-bottom:2px solid var(--color-gold);
+        .lead{
+            font-family:var(--font-heading);
+            font-size:1.05rem;
             margin-bottom:8px;
         }
-        .gift-card h3 {
-            font-family:var(--font-heading);
-            font-size:1rem;
-            margin:8px 0;
-            color:var(--color-text);
-        }
-        .gift-card a {
-            display:inline-block;
-            margin-top:8px;
-            font-family:var(--font-body);
-            font-size:0.8rem;
+        .link{
+            display:inline;
             color:var(--color-gold);
             text-decoration:none;
-            padding:4px 8px;
-            border:1px solid transparent;
-            transition:background 0.3s, color 0.3s;
+            border-bottom:1px dashed rgba(176,141,87,.6);
+            padding-bottom:1px;
         }
-        .gift-card a:hover {
-            background:var(--color-gold);
-            color:var(--color-card);
-            border-color:var(--color-gold);
+        .link:hover{ color:#8f6e3f; border-bottom-color:#8f6e3f }
+        .muted{ opacity:.9; font-size:.95rem; margin-top:6px }
+
+        /* toque sutil dourado nas bordas do cartão */
+        .invitation-card::before, .invitation-card::after{
+            content:""; position:absolute; inset:0; pointer-events:none;
+        }
+        .invitation-card{ position:relative }
+        .invitation-card::after{
+            content:""; position:absolute; left:22px; right:22px; bottom:10px; height:6px;
+            background: radial-gradient(ellipse at center, rgba(176,141,87,.12), transparent 70%);
+            filter: blur(6px);
         }
 
-        .pix-section h2 {
-            font-family: var(--font-heading);
-            font-size:1.2rem;
-            color: var(--color-gold);
-            margin:30px 0 15px;
-        }
-        .pix-section p {
-            font-size:0.8rem;
-            margin:3px 0;
-            word-break:break-all;
-        }
-        .pix-key {
-            display:inline-block;
-            background:var(--color-bg);
-            padding:3px 6px;
-            font-family:var(--font-body);
-            font-size:0.8rem;
-            border:1px dashed var(--color-gold);
-            border-radius:4px;
-            margin-left:5px;
-        }
-        .copy-link {
-            display:inline-block;
-            margin-top:8px;
-            font-size:0.8rem;
-            color:var(--color-gold);
-            text-decoration:underline;
-            cursor:pointer;
-        }
-        .pix-container img {
-            width:120px;
-            height:120px;
-            object-fit:contain;
-            border-radius:4px;
-            border:1px solid #ddd;
-            margin-top:8px;
-        }
-
-        .location-section h2 {
-            font-family: var(--font-heading);
-            font-size:1.2rem;
-            color: var(--color-gold);
-            margin:30px 0 15px;
-        }
-        .address {
-            margin-bottom:15px;
-            font-size:0.8rem;
-        }
-        .map-container {
-            width:100%;
-            height:150px;
-            border-radius:4px;
-            overflow:hidden;
-            margin-top:8px;
-        }
-        .map-container iframe {
-            width:100%;
-            height:100%;
-            border:0;
-        }
+        /* acessibilidade no foco do link */
+        .link:focus-visible{ outline:3px solid rgba(176,141,87,.35); outline-offset:3px; border-bottom-color:transparent }
     </style>
 </head>
 <body>
 <div class="page">
     <div class="frame-outer">
         <div class="frame-middle">
-            <div class="frame-inner invitation-card">
+            <div class="frame-inner">
+                <section class="invitation-card" role="main" aria-live="polite">
+                    <div class="monogram">
+                        <img src="images/monograma_dourado.png" alt="Monograma Bruna e Janilson">
+                    </div>
 
-                <div class="monogram">
-                    <img src="images/monograma_dourado.png" alt="Monograma">
-                </div>
-                <!-- h1 agora com Great Vibes -->
-                <h1>Bruna &amp; Janilson</h1>
-                <p class="welcome">Agradecemos por fazer parte deste momento tão especial em nossas vidas.</p>
+                    <h1>Bruna &amp; Janilson</h1>
+                    <hr class="sep" aria-hidden="true" />
 
-                <hr class="separator">
-
-                <!-- texto acima do contador -->
-                <p class="countdown-text">Faltam para o nosso grande dia:</p>
-                <section id="countdown" class="countdown-container">
-                    <div class="countdown-card" id="days">
-                        <div class="number">0</div>
-                        <div class="label">Dias</div>
-                    </div>
-                    <div class="countdown-card" id="hours">
-                        <div class="number">0</div>
-                        <div class="label">Horas</div>
-                    </div>
-                    <div class="countdown-card" id="minutes">
-                        <div class="number">0</div>
-                        <div class="label">Minutos</div>
-                    </div>
-                    <div class="countdown-card" id="seconds">
-                        <div class="number">0</div>
-                        <div class="label">Segundos</div>
-                    </div>
+                    <p class="lead">Estamos te redirecionando para o nosso site principal.</p>
+                    <p class="muted">
+                        Se não redirecionar automaticamente, acesse
+                        <a id="fallback-link" class="link" href="https://sites.icasei.com.br/brunaejanilson/home" rel="noopener">
+                            sites.icasei.com.br/brunaejanilson/home
+                        </a>.
+                    </p>
                 </section>
 
-                <hr class="separator">
-
-                <section class="gift-section">
-                    <h2>Presentes</h2>
-                    <div class="gift-cards">
-                        <div class="gift-card">
-                            <img src="images/camicado.png" alt="Camicado">
-                            <h3>Camicado</h3>
-                            <a href="https://www.camicado.com.br/lista/convidado/brunaejanilson" target="_blank">Ver lista →</a>
-                        </div>
-                        <div class="gift-card">
-                            <img src="images/casagoianita.png" alt="Casa Goianita">
-                            <h3>Casa Goianita</h3>
-                            <a href="https://www.casagoianita.com.br/wishlist/#/list/brunaneiro-f02f3d/30f235fa47110fc1" target="_blank">Ver lista →</a>
-                        </div>
-                        <div class="gift-card">
-                            <img src="images/magalu.png" alt="Magazine Luiza">
-                            <h3>Magazine Luiza</h3>
-                            <a href="https://www.finalfeliz.de/brunaejanilson" target="_blank">Ver lista →</a>
-                        </div>
-                        <div class="gift-card">
-                            <img src="images/icasei.png" alt="ICasei">
-                            <h3>Magazine Luiza</h3>
-                            <a href="https://sites.icasei.com.br/brunaejanilson/home" target="_blank">Ver lista →</a>
-                        </div>
+                <noscript>
+                    <div style="text-align:center; margin-top:10px">
+                        JavaScript desativado: clique em
+                        <a class="link" href="https://sites.icasei.com.br/brunaejanilson/home">sites.icasei.com.br/brunaejanilson/home</a>.
                     </div>
-                </section>
-
-                <hr class="separator">
-
-                <section class="pix-section">
-                    <h2>Contribuição via Pix</h2>
-                    <p>Chave Pix:<span class="pix-key">cf8baef6-5316-4300-847f-dd8afb5190e9</span></p>
-                    <span class="copy-link" onclick="navigator.clipboard.writeText('cf8baef6-5316-4300-847f-dd8afb5190e9')">Copiar chave</span>
-                    <div class="pix-container">
-                        <img src="images/QRCodeMonograma.png" alt="QR Code Pix">
-                    </div>
-                </section>
-
-                <hr class="separator">
-
-                <section class="location-section">
-                    <h2>Localização</h2>
-                    <div class="address">
-                        Cerimônia: Reitoria Nossa Sra. das Graças – Rua 4, 1370, Setor Central, Goiânia – GO
-                        <div class="map-container">
-                            <iframe src="https://maps.google.com/maps?q=Reitoria%20Nossa%20Sra.%20das%20Graças%20Rua%204%2C%201370%2C%20Setor%20Central%2C%20Goi%C3%A2nia%20GO&output=embed" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="address">
-                        Recepção: Maktub – Rua 83, 205, Setor Sul, Goiânia – GO
-                        <div class="map-container">
-                            <iframe src="https://maps.google.com/maps?q=Maktub%20Rua%2083%2C%20205%2C%20Setor%20Sul%2C%20Goi%C3%A2nia%20GO&output=embed" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </section>
-
+                </noscript>
             </div>
         </div>
     </div>
 </div>
 
-<noscript>Se não redirecionar, clique <a href="https://sites.icasei.com.br/brunaejanilson/home">aqui</a>.</noscript>]
-
 <script>
-    // Redireciona rápido e, se quiser, preserva ?query e #hash
-    const destino = new URL("https://sites.icasei.com.br/brunaejanilson/home");
-    const atual = new URL(window.location.href);
-    if (atual.search) destino.search = atual.search;
-    if (atual.hash) destino.hash = atual.hash;
-    window.location.replace(destino.href); // não deixa o usuário "voltar" para a antiga
+    (function () {
+        const destinoBase = "https://sites.icasei.com.br/brunaejanilson/home";
+        const atual = new URL(window.location.href);
+        const qp = new URLSearchParams(atual.search);
 
-    const target = new Date('2025-09-27T10:30:00');
-    const ids = ['days','hours','minutes','seconds'];
-    function tick(){
-        const now = new Date(), diff = target - now;
-        const d = Math.floor(diff/86400000), h = Math.floor(diff/3600000)%24;
-        const m = Math.floor(diff/60000)%60, s = Math.floor(diff/1000)%60;
-        [d,h,m,s].forEach((v,i)=>{
-            const el = document.getElementById(ids[i]);
-            const num = el.querySelector('.number');
-            if (num.textContent != v) {
-                num.textContent = v;
-                el.classList.add('flip');
-                setTimeout(()=> el.classList.remove('flip'), 700);
-            }
-        });
-    }
-    tick(); setInterval(tick, 1000);
+        // aceita ?redirect=off, ?noRedirect=1 ou #redirect=off
+        const redirectParam = (qp.get("redirect") || "").toLowerCase();
+        const bypass = atual.hash === "#redirect=off"
+            || ["off","false","0","no"].includes(redirectParam)
+            || qp.has("noRedirect");
+
+        // monta URL de destino preservando query/hash, mas sem os controles
+        const destino = new URL(destinoBase);
+        const forward = new URLSearchParams(atual.search);
+        forward.delete("redirect"); forward.delete("noRedirect");
+        const fwdStr = forward.toString();
+        if (fwdStr) destino.search = "?" + fwdStr;
+        if (atual.hash && atual.hash !== "#redirect=off") destino.hash = atual.hash;
+
+        // atualiza o link visível
+        const a = document.getElementById("fallback-link");
+        if (a) a.href = destino.href;
+
+        if (bypass) {
+            // cancela o meta-refresh (precisa de delay > 0 para dar tempo de remover)
+            document.querySelector('meta[http-equiv="refresh"]')?.remove();
+            return; // não redireciona
+        }
+
+        // redireciona normalmente
+        window.location.replace(destino.href);
+    })();
 </script>
 </body>
 </html>
