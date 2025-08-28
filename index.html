@@ -2,99 +2,90 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Bruna &amp; Janilson • Redirecionando…</title>
 
-    <!-- Redirecionamento imediato por meta refresh (fallback do JS) -->
-    <meta id="meta-refresh" http-equiv="refresh" content="3; url=https://sites.icasei.com.br/brunaejanilson/home" />
+    <!-- Meta refresh como fallback (JS remove se cancelado) -->
+    <meta id="meta-refresh" http-equiv="refresh" content="5; url=https://sites.icasei.com.br/brunaejanilson/home" />
 
     <!-- Fonts do site antigo -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
         :root{
-            --color-bg:#f0ece5;
-            --color-card:#fcfaf5;
-            --color-text:#4b2e1e;
-            --color-gold:#b08d57;
-            --border-color:#e0d4c4;
-            --font-title:'Great Vibes',cursive;
-            --font-heading:'Playfair Display',serif;
-            --font-body:'Merriweather',serif;
+            --color-bg:#f0ece5; --color-card:#fcfaf5; --color-text:#4b2e1e; --color-gold:#b08d57; --border-color:#e0d4c4;
+            --font-title:'Great Vibes',cursive; --font-heading:'Playfair Display',serif; --font-body:'Merriweather',serif;
+            --p: clamp(14px, 3.5vw, 28px);
         }
         *{margin:0;padding:0;box-sizing:border-box}
         html,body{height:100%}
         body{
-            background:var(--color-bg);
-            color:var(--color-text);
-            font-family:var(--font-body);
-            line-height:1.5;
-            display:flex; align-items:center; justify-content:center;
-            padding:20px;
+            background:var(--color-bg); color:var(--color-text); font-family:var(--font-body); line-height:1.5;
+            min-height:100svh; padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+        max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+            display:grid; place-items:center;
         }
+
         .page{width:100%}
         .frame-outer,.frame-middle,.frame-inner{width:100%; display:block; background:var(--color-bg)}
-        .frame-outer{border:2px solid #d3c7aa; padding:15px}
-        .frame-middle{border:2px solid #e6dfd4; padding:12px}
-        .frame-inner{border:1px solid #e0d8cd; padding:10px}
+        .frame-outer{border:2px solid #d3c7aa; padding: clamp(8px, 2.2vw, 15px)}
+        .frame-middle{border:2px solid #e6dfd4; padding: clamp(8px, 2vw, 12px)}
+        .frame-inner{border:1px solid #e0d8cd; padding: clamp(8px, 1.8vw, 10px)}
 
         .invitation-card{
+            position:relative;
             background:var(--color-card);
-            max-width:720px;
+            width:min(680px, 100%);
             margin:auto;
             text-align:center;
-            padding:28px 24px;
+            padding: var(--p);
             border-radius:12px;
             box-shadow:0 10px 26px rgba(0,0,0,.06);
         }
-
-        .monogram img{
-            width:90px; height:90px; object-fit:contain; display:block; margin:0 auto 14px;
-            animation:pulse 4s ease-in-out infinite;
-            filter: drop-shadow(0 3px 6px rgba(0,0,0,.08));
-        }
-        @keyframes pulse{0%,100%{transform:scale(1.08)}50%{transform:scale(0.92)}}
-
-        h1{
-            font-family:var(--font-title);
-            font-size:2.8rem;
-            color:var(--color-gold);
-            line-height:1;
-            margin-bottom:6px;
-        }
-        .sep{
-            height:1px; border:0; background:linear-gradient(90deg, transparent, var(--border-color), transparent);
-            margin:18px 0 16px;
-        }
-        .lead{
-            font-family:var(--font-heading);
-            font-size:1.05rem;
-            margin-bottom:8px;
-        }
-        .link{
-            display:inline;
-            color:var(--color-gold);
-            text-decoration:none;
-            border-bottom:1px dashed rgba(176,141,87,.6);
-            padding-bottom:1px;
-        }
-        .link:hover{ color:#8f6e3f; border-bottom-color:#8f6e3f }
-        .muted{ opacity:.9; font-size:.95rem; margin-top:6px }
-
-        /* toque sutil dourado nas bordas do cartão */
-        .invitation-card::before, .invitation-card::after{
-            content:""; position:absolute; inset:0; pointer-events:none;
-        }
-        .invitation-card{ position:relative }
         .invitation-card::after{
             content:""; position:absolute; left:22px; right:22px; bottom:10px; height:6px;
             background: radial-gradient(ellipse at center, rgba(176,141,87,.12), transparent 70%);
-            filter: blur(6px);
+            filter: blur(6px); pointer-events:none;
         }
 
-        /* acessibilidade no foco do link */
+        .monogram img{
+            width: clamp(64px, 18vw, 96px); height: clamp(64px, 18vw, 96px);
+            object-fit:contain; display:block; margin:0 auto clamp(8px,2.5vw,16px);
+            animation:pulse 4s ease-in-out infinite;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,.08));
+        }
+        @keyframes pulse{0%,100%{transform:scale(1.06)}50%{transform:scale(0.94)}}
+        @media (prefers-reduced-motion: reduce){ .monogram img{ animation:none } }
+
+        h1{
+            font-family:var(--font-title);
+            font-size: clamp(2rem, 8.5vw, 3rem);
+            color:var(--color-gold); line-height:1; margin-bottom: clamp(6px,1.6vw,10px);
+        }
+        .sep{
+            height:1px; border:0; background:linear-gradient(90deg, transparent, var(--border-color), transparent);
+            margin: clamp(12px, 4vw, 20px) 0;
+        }
+        .lead{
+            font-family:var(--font-heading);
+            font-size: clamp(.95rem, 3.5vw, 1.1rem);
+            margin-bottom: clamp(4px, 1.5vw, 8px);
+            padding-inline: clamp(4px, 3vw, 12px);
+        }
+        .muted{ opacity:.95; font-size: clamp(.9rem, 3.2vw, 1rem) }
+
+        .link{
+            color:var(--color-gold); text-decoration:none;
+            border-bottom:1px dashed rgba(176,141,87,.6); padding-bottom:2px;
+            word-break: break-word;
+        }
         .link:focus-visible{ outline:3px solid rgba(176,141,87,.35); outline-offset:3px; border-bottom-color:transparent }
+        .link:hover{ color:#8f6e3f; border-bottom-color:#8f6e3f }
+
+        /* Ajustes extras para telas bem pequenas */
+        @media (max-width: 400px){
+            .invitation-card{ padding: calc(var(--p) * .8) }
+        }
     </style>
 </head>
 <body>
@@ -132,35 +123,49 @@
 
 <script>
     (function () {
-        const destinoBase = "https://sites.icasei.com.br/brunaejanilson/home";
+        const DESTINO_BASE = "https://sites.icasei.com.br/brunaejanilson/home";
         const atual = new URL(window.location.href);
         const qp = new URLSearchParams(atual.search);
 
-        // aceita ?redirect=off, ?noRedirect=1 ou #redirect=off
-        const redirectParam = (qp.get("redirect") || "").toLowerCase();
-        const bypass = atual.hash === "#redirect=off"
-            || ["off","false","0","no"].includes(redirectParam)
-            || qp.has("noRedirect");
+        const mode = (qp.get("redirect") || "").toLowerCase();
+        const isOffParam = ["off","false","0","no"].includes(mode) || qp.has("noRedirect") || atual.hash === "#redirect=off";
+        const isOnParam  = ["on","true","1","yes"].includes(mode);
+        const isReset    = (mode === "reset");
 
-        // monta URL de destino preservando query/hash, mas sem os controles
-        const destino = new URL(destinoBase);
-        const forward = new URLSearchParams(atual.search);
-        forward.delete("redirect"); forward.delete("noRedirect");
-        const fwdStr = forward.toString();
-        if (fwdStr) destino.search = "?" + fwdStr;
-        if (atual.hash && atual.hash !== "#redirect=off") destino.hash = atual.hash;
+        const persist = (qp.get("persist") || "").toLowerCase();
+        const wantsPersist = ["1","true","yes","on"].includes(persist) || (persist !== "" && !["0","false","no","off"].includes(persist));
 
-        // atualiza o link visível
-        const a = document.getElementById("fallback-link");
-        if (a) a.href = destino.href;
+        // Persistência local (sem mostrar UI)
+        try {
+            if (wantsPersist && isReset) localStorage.removeItem("redirect_off");
+            else if (wantsPersist && isOffParam) localStorage.setItem("redirect_off", "1");
+            else if (wantsPersist && isOnParam)  localStorage.removeItem("redirect_off");
+        } catch (_) {}
 
-        if (bypass) {
-            // cancela o meta-refresh (precisa de delay > 0 para dar tempo de remover)
-            document.querySelector('meta[http-equiv="refresh"]')?.remove();
+        const isOffStored = (() => { try { return localStorage.getItem("redirect_off") === "1"; } catch { return false; } })();
+
+        // Monta URL de destino, preservando query/hash, mas removendo controles
+        function montarDestino() {
+            const destino = new URL(DESTINO_BASE);
+            const forward = new URLSearchParams(atual.search);
+            ["redirect","noRedirect","persist"].forEach(k => forward.delete(k));
+            const qs = forward.toString();
+            if (qs) destino.search = "?" + qs;
+            if (atual.hash && atual.hash !== "#redirect=off") destino.hash = atual.hash;
+            return destino;
+        }
+
+        const destino = montarDestino();
+        const fallback = document.getElementById("fallback-link");
+        if (fallback) fallback.href = destino.href;
+
+        // Cancela TOTALMENTE se param/hash ou se armazenado localmente
+        if (isOffParam || isOffStored) {
+            document.getElementById("meta-refresh")?.remove(); // impede meta refresh
             return; // não redireciona
         }
 
-        // redireciona normalmente
+        // Redireciona normalmente
         window.location.replace(destino.href);
     })();
 </script>
